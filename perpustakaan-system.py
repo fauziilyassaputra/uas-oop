@@ -47,7 +47,7 @@ class ManagerPerpustakaan:
         return True
         
     def tambah_buku_baru(self):
-        input_id = int(input("masukkan ID buku baru : "))
+        input_id = int(input("masukkan ID buku baru (Angka) : "))
 
         if self.validasi_id_unik(input_id) is not False:
             print("ID Valid")
@@ -58,6 +58,7 @@ class ManagerPerpustakaan:
             buku_baru_tervalidasi = Buku(input_id,input_judul,penulis_baru)
             self.koleksi.append(buku_baru_tervalidasi)
             self.terurut = False
+            print(f"[SUKSES] '{input_judul}' karya {input_penulis} berhasil ditambahkan.")
 
     def urutkan_koleksi(self):
         length_koleksi = len(self.koleksi)
@@ -77,7 +78,7 @@ class ManagerPerpustakaan:
     
     def cari_buku(self,id_target):
         if self.terurut == False:
-            print("ID Belum terurut, urutkan!")
+            print("[Peringatan] Mohon untuk mengurutkan data terlebih dahulu")
             return
         left = 0
         right = len(self.koleksi) - 1
@@ -93,6 +94,7 @@ class ManagerPerpustakaan:
                 right = midPoint - 1
             else:
                 left = midPoint + 1
+        print(f"[Hasil] ID {id_target} tidak ditemukan")
         return -1
     
     def tampilkan_koleksi(self):
@@ -109,6 +111,7 @@ class ManagerPerpustakaan:
     
 
 sistem_perpustakaan = ManagerPerpustakaan()
+
 
 while True:
     print("="*25)
